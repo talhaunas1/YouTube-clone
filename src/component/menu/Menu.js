@@ -109,7 +109,7 @@ function Menu( {darkMode, setDarkMode} ) {
 
 const Container = styled.div`
 flex:1 ;
-background-color: ${({theme}) => theme.bg};
+background-color: ${({theme}) => theme.bgLighter};
 /* height:100vh ; */
 height:100% ;
 color:${({theme}) => theme.text};
@@ -148,9 +148,8 @@ const Hr = styled.hr`
 margin:15px 0px;
 border:0.5px solid ${({theme}) => theme.brdr};
 `
-const Login = styled.div`
 
-`
+const Login = styled.div` `
 
 const Button = styled.button`
 padding: 5px 15px;

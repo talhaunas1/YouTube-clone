@@ -15,6 +15,7 @@ function App() {
         <Main>
           <NavBar />
           <Wrapper>
+            {/* <h3>test</h3>
             <h3>test</h3>
             <h3>test</h3>
             <h3>test</h3>
@@ -66,8 +67,7 @@ function App() {
             <h3>test</h3>
             <h3>test</h3>
             <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
+            <h3>test</h3> */}
           </Wrapper>
         </Main>
       </Container>
