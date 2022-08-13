@@ -59,7 +59,7 @@ function Menu( {darkMode, setDarkMode} ) {
           {/* </Link> */}
         </Login>
         <Hr />
-        {/* <Title>BEST OF LAMATUBE</Title> */}
+        <Title>BEST OF TalhaTUBE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
           Music
@@ -109,17 +109,19 @@ function Menu( {darkMode, setDarkMode} ) {
 
 const Container = styled.div`
 flex:1 ;
-background-color: ${({theme}) =>theme.bg};
+background-color: ${({theme}) => theme.bg};
 /* height:100vh ; */
 height:100% ;
-color:${({theme}) =>theme.text};
-font-size: 14px;
+color:${({theme}) => theme.text};
+font-size: 12px;
 position:sticky ;
 top:0 ;
+/* width:500px ; */
 `
 
 const Wraper = styled.div`
 padding:18px 26px;
+width:220px ;
 
 `
 const Logo = styled.div`
@@ -128,9 +130,11 @@ align-items: center;
 gap:5px;
 font-weight:bold ;
 margin-bottom: 20px;
+font-size:16px ;
 `
 const Img = styled.img`
 height:25px;
+/* font-size:14px ; */
 `
 const Item = styled.div`
 display: flex;
@@ -138,10 +142,11 @@ align-items: center;
 gap: 15px;
 cursor: pointer;
 padding:7.5px 0px ;
+
 `
 const Hr = styled.hr`
 margin:15px 0px;
-border:0.5px solid ${({theme}) =>theme.brdr};
+border:0.5px solid ${({theme}) => theme.brdr};
 `
 const Login = styled.div`
 
@@ -159,5 +164,12 @@ cursor:pointer ;
 display:flex ;
 align-items:center ;
 gap:5px;
+`
+
+const Title = styled.div`
+font-size:14px ;
+font-weight: 500;
+color:#aaaaaa ;
+margin-bottom:20px ;
 `
 export default Menu
