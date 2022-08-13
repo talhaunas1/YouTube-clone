@@ -1,33 +1,88 @@
-import styled from "styled-components";
-import Menu from './component/menu/Menu'
-import NavBar from './component/navBar/Navbar.js'
-
-
+import React,{ useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import Menu from "./component/menu/Menu";
+import NavBar from "./component/navBar/Navbar.js";
+import { darkTheme , lightTheme} from "./utils/Theme";
+// import from "react";
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
   return (
-    <div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
-        <Menu/>
-          <Main>
-          <NavBar/>
+        {/* sending props in th menu */}
+        <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Main>
+          <NavBar />
           <Wrapper>
-            VideoCards
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>v<h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
+            <h3>test</h3>
           </Wrapper>
-          </Main>
+        </Main>
       </Container>
-     
-    </div>
+    </ThemeProvider>
   );
 }
 
 const Container = styled.div`
-display: flex;
-`
+  display: flex;
+`;
 
 const Main = styled.div`
-flex:7 ;
-`
+  flex: 7;
+  background-color: #181818;
+`;
 
-const Wrapper = styled.div``
+const Wrapper = styled.div``;
 export default App;
-
