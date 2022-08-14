@@ -3,73 +3,27 @@ import styled, { ThemeProvider } from "styled-components";
 import Menu from "./component/menu/Menu";
 import NavBar from "./component/navBar/Navbar.js";
 import { darkTheme , lightTheme} from "./utils/Theme";
-// import from "react";
+import { BrowserRouter } from 'react-router-dom'
+import Routes from "./routes/Routes";
+
+
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
+        <BrowserRouter>
         {/* sending props in th menu */}
         <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
         <Main>
           <NavBar />
-          <Wrapper>
-            {/* <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3>
-            <h3>test</h3> */}
-          </Wrapper>
+          {/* <Wrapper> */}
+           <Routes/>
+          {/* </Wrapper> */}
         </Main>
+        </BrowserRouter>
       </Container>
     </ThemeProvider>
   );
@@ -84,5 +38,5 @@ const Main = styled.div`
   background-color: ${({theme}) => theme.bg };
 `;
 
-const Wrapper = styled.div``;
+// const Wrapper = styled.div``;
 export default App;
