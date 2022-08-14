@@ -1,9 +1,39 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+import Card from "../component/card/Card";
 
-function Home() {
+const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <Container>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </Container>
+  );
+};
 
-export default Home
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+export default Home;
