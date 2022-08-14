@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Card = () => {
   return (
     <Container>
-        <Image/>
+        <Image src='https://i.ytimg.com/vi/xyVfLxV08I0/maxresdefault.jpg' />
     </Container>
   )
 }
