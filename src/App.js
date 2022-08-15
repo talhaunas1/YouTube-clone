@@ -19,9 +19,9 @@ function App() {
         <Menu darkMode={darkMode} setDarkMode={setDarkMode} />
         <Main>
           <NavBar />
-          {/* <Wrapper> */}
+          <Wrapper>
            <Routes/>
-          {/* </Wrapper> */}
+          </Wrapper>
         </Main>
         </BrowserRouter>
       </Container>
@@ -38,5 +38,8 @@ const Main = styled.div`
   background-color: ${({theme}) => theme.bg };
 `;
 
-// const Wrapper = styled.div``;
+const Wrapper = styled.div`
+padding:22px 96px ;
+/* background-color:blue ; */
+`;
 export default App;
