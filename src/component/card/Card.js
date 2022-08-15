@@ -6,7 +6,7 @@ const Card = () => {
     <Container>
         <Image src='https://i.ytimg.com/vi/xyVfLxV08I0/maxresdefault.jpg' />
         <Details>
-        <ChannelImage/>
+        <ChannelImage src="https://avatars.githubusercontent.com/u/94473513?v=4" />
         <Text>
             <Title>Test Video</Title>
             <ChannelName>Talha techguy</ChannelName>
