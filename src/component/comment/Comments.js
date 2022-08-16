@@ -35,12 +35,14 @@ border-radius:50% ;
 
 const Input = styled.input`
 border:none ;
-border-bottom: 1px solid   ${({ theme }) => theme.soft};
+border-bottom: 2px solid ${({ theme }) => theme.soft};
 background-color: transparent;
 outline:none ;
 padding:5px ;
 width:100%; 
 margin-left:10px ;
+color:${({ theme }) => theme.textSoft }
+
 `;
 
 

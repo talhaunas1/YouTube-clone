@@ -10,7 +10,7 @@ function Navbar() {
         <Wrapper>
             <Search>
             <Input  placeholder='Search'/>
-            <SearchOutlinedIcon/>
+            <SearchOutlinedIcon />
             </Search>
             <Link to='signin' style={{textDecoration:'none'}}>
             <Button>
@@ -55,6 +55,7 @@ const Input = styled.input`
 border:none;
 outline:none ;
 background-color: transparent;
+color:${({ theme }) => theme.textSoft }
 `
 const Button = styled.button`
 padding: 5px 15px;
