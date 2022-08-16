@@ -1,22 +1,48 @@
 import React from "react";
 import styled from "styled-components";
+import Comment from "./Comment";
 
 const Comments = () => {
   return (
     <Container>
-      <NewContainer>
+      <NewComment>
         <Avatar src="https://avatars.githubusercontent.com/u/94473513?v=4" />
         <Input placeholder="Enter new comment" />
-      </NewContainer>
+      </NewComment>
+      <Comment/>
+      <Comment/>
+      <Comment/>
+      <Comment/>
+      <Comment/>
+      <Comment/>
     </Container>
   );
 };
 
 const Container = styled.div``;
 
-const NewContainer = styled.div``;
+const NewComment = styled.div`
+display: flex;
+align-items:center ;
+gap: 10p;
+`;
 
-const Avatar = styled.img``;
+const Avatar = styled.img`
+width:40px ;
+height: 40px;
+border-radius:50% ;
+`;
 
-const Input = styled.input``;
+const Input = styled.input`
+border:none ;
+border-bottom: 1px solid   ${({ theme }) => theme.soft};
+background-color: transparent;
+outline:none ;
+padding:5px ;
+width:100%; 
+margin-left:10px ;
+`;
+
+
+
 export default Comments;

@@ -5,6 +5,7 @@ import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Comments from "../component/comment/Comments";
+import Card from '../component/card/Card'
 
 function Video() {
   return (
@@ -12,8 +13,8 @@ function Video() {
       <Content>
         <VideoWrapper>
           <iframe
-            width="560"
-            height="315"
+            width="575"
+            height="325"
             src="https://www.youtube.com/embed/qZC_wjRkAt0"
             title="YouTube video player"
             frameborder="0"
@@ -26,21 +27,19 @@ function Video() {
           <Info>2,348,230 views - Aug 15 2022</Info>
           <Buttons>
             <Button>
-              {" "}
               <ThumbUpAltOutlinedIcon />
-              123{" "}
+              123
             </Button>
             <Button>
-              {" "}
-              <ThumbDownAltOutlinedIcon /> Dislike{" "}
+              <ThumbDownAltOutlinedIcon />
+              Dislike
             </Button>
             <Button>
-              {" "}
-              <ReplyOutlinedIcon /> Share{" "}
+              <ReplyOutlinedIcon />
+              Share
             </Button>
             <Button>
-              {" "}
-              <AddTaskOutlinedIcon /> Save{" "}
+              <AddTaskOutlinedIcon /> Save
             </Button>
           </Buttons>
         </Details>
@@ -61,9 +60,23 @@ function Video() {
           <Subscribe>Subscribe</Subscribe>
         </Channel>
         <Hr />
-        <Comments/>
+        <Comments />
       </Content>
-      <Content>Recommendation</Content>
+      <Content>
+        <Recommendation>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+          <Card type='sm'/>
+        </Recommendation>
+      </Content>
     </Container>
   );
 }
@@ -74,7 +87,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  flex: 5;
+  flex: 7;
 `;
 const VideoWrapper = styled.div``;
 const Title = styled.h1`
@@ -110,57 +123,55 @@ const Hr = styled.hr`
 `;
 
 const Recommendation = styled.div`
-  flex: 2;
+  flex: 1;
 `;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 const ChannelInfo = styled.div`
-display: flex;
-gap: 20px;
+  display: flex;
+  gap: 20px;
 `;
 
 const Image = styled.img`
-width: 50px;
-height: 50px;
-border-radius:50% ;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;
 
 const ChannelDetail = styled.div`
-display: flex;
-flex-direction:column ;
-color: ${({ theme }) => theme.text} ;
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.text};
 `;
 
 const ChannelName = styled.span`
-font-weight: 500;
-
+  font-weight: 500;
 `;
 
 const ChannelCounter = styled.span`
-margin-top:5px ;
-margin-bottom:20px ;
-color: ${({ theme }) => theme.textSoft};
-font-size:12px ;
-
+  margin-top: 5px;
+  margin-bottom: 6px;
+  color: ${({ theme }) => theme.textSoft};
+  font-size: 12px;
 `;
 
 const ChannelDescription = styled.p`
-font-size:14px ;
+  font-size: 14px;
 `;
 
 const Subscribe = styled.button`
-/* color: #ccla00 ; */
-/* font-weight:500; */
-background-color: #cc1a00 ;
-font-weight:500 ;
-color:white;
-border:none ;
-height:max-content ;
-border-radius:3px ;
-cursor: pointer; 
-padding:10px 20px;
+  /* color: #ccla00 ; */
+  /* font-weight:500; */
+  background-color: #cc1a00;
+  font-weight: 500;
+  color: white;
+  border: none;
+  height: max-content;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 10px 20px;
 `;
 
 export default Video;

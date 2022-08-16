@@ -24,7 +24,7 @@ function Menu({ darkMode, setDarkMode }) {
   return (
     <Container>
       <Wraper>
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
           <Logo>
             <Img src={Youtube} />
             YouTube
@@ -110,20 +110,23 @@ function Menu({ darkMode, setDarkMode }) {
 }
 
 const Container = styled.div`
-  flex: 1;
+  flex: 1.5;
   background-color: ${({ theme }) => theme.bgLighter};
-  /* height:100vh ; */
-  height: 100%;
+  height: 100vh;
+  /* height: 100%; */
   color: ${({ theme }) => theme.text};
   font-size: 12px;
   position: sticky;
   top: 0;
-  /* width:500px ; */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid black;
 `;
 
 const Wraper = styled.div`
   padding: 18px 26px;
-  width: 220px;
+  width: 250px;
+  /* overflow-y:scroll ; */
 `;
 const Logo = styled.div`
   display: flex;
