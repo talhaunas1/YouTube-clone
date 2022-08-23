@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Card = ({type}) => {
+const Card = ({type,video}) => {
   return (
     <Link to="/video/test" style={{ textDecoration: "none", color: "inherit" }}>
       <Container type={type}>
-        <Image type={type} src="https://i.ytimg.com/vi/xyVfLxV08I0/maxresdefault.jpg" />
+        <Image type={type} src="video.imgUrl" />
         <Details type={type}>
           <ChannelImage type={type} src="https://avatars.githubusercontent.com/u/94473513?v=4" />
           <Text>
-            <Title>Test Video</Title>
+            <Title>{video.title}</Title>
             <ChannelName>Talha techguy</ChannelName>
-            <Info>666,234 views - 1 day ago</Info>
+            <Info>{video.views}views -{video.createdAt}</Info>
           </Text>
         </Details>
       </Container>

@@ -15,7 +15,9 @@ const SignIn = () => {
             <Input  placeholder='Email'/>
             <Input type='password' placeholder='Password' />
             <Button>Sign Up</Button>
-            <More>
+           
+        </Wrapper>
+        <More>
                 English(USA)
                 <Links> 
                     <Link>Help</Link>
@@ -23,7 +25,6 @@ const SignIn = () => {
                     <Link>Terms</Link>
                 </Links>
             </More>
-        </Wrapper>
     </Container>
   )
 }
