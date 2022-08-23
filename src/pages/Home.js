@@ -2,7 +2,10 @@
 import styled from "styled-components";
 import Card from "../component/card/Card";
 import axios from 'axios'
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
+
+//prop type is coimg from the routes
 const Home = ({type}) => {
 
   //fetching data from backend
@@ -20,11 +23,12 @@ const Home = ({type}) => {
   
   return (
     <Container>
-      {videos.map(video=>(
-        <Card key={video._id} video={video} />
-      ))}
+      {videos.map((video)=>(
+        //  <Card />
+         <Card key={video._id} video={video} />
+       ))} 
       
-      {/* <Card />
+       {/* <Card />
       <Card />
       <Card />
       <Card />
@@ -42,7 +46,8 @@ const Home = ({type}) => {
       <Card />
       <Card />
       <Card />
-      <Card /> */}
+      <Card />   */}
+
     </Container>
   );
 };

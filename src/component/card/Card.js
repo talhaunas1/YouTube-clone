@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {format} from 'timeago.js'
 
+//video coimg from home as a prop
 const Card = ({type,video}) => {
   return (
     <Link to="/video/test" style={{ textDecoration: "none", color: "inherit" }}>
       <Container type={type}>
-        <Image type={type} src="video.imgUrl" />
+        <Image type={type} 
+        src={video.imgUrl} />
         <Details type={type}>
           <ChannelImage type={type} src="https://avatars.githubusercontent.com/u/94473513?v=4" />
           <Text>
-            <Title>{video.title}</Title>
+            <Title> {video.title} </Title>
             <ChannelName>Talha techguy</ChannelName>
-            <Info>{video.views}views -{video.createdAt}</Info>
+            <Info>{video.views} views - {format(video.createdAt)}</Info>
           </Text>
         </Details>
       </Container>
