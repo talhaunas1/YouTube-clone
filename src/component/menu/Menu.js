@@ -19,8 +19,12 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { lightTheme } from "../../utils/Theme";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Menu({ darkMode, setDarkMode }) {
+
+  const currentUser  = useSelector((state) => state.user.currentUser);
+  
   return (
     <Container>
       <Wraper>
@@ -57,7 +61,10 @@ function Menu({ darkMode, setDarkMode }) {
           History
         </Item>
         <Hr />
-        <Login>
+
+        { !currentUser  &&
+          <>
+          <Login>
           Sign in to like videos, comment, and subscribe.
           <Link to="signin" style={{textDecoration:"none"}}>
           <Button>
@@ -67,6 +74,9 @@ function Menu({ darkMode, setDarkMode }) {
           </Link>
         </Login>
         <Hr />
+        </> 
+        }
+        
         <Title>BEST OF TalhaTUBE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
@@ -123,8 +133,8 @@ const Container = styled.div`
   font-size: 12px;
   position: sticky;
   top: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  /* overflow-y: scroll; */
+  /* overflow-x: hidden; */
   border: 1px solid black;
 `;
 

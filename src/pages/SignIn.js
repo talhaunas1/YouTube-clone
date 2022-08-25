@@ -5,32 +5,30 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 
-
-
 const SignIn = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginStart())
+    dispatch(loginStart());
 
     try {
       const res = await axios.post("/auth/signin", { name, password });
       // console.log(res.data);
-      dispatch(loginSuccess(res.data))
+      dispatch(loginSuccess(res.data));
     } catch (err) {
-      dispatch(loginFailure())
+      dispatch(loginFailure());
     }
   };
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
-        <SubTitle>To continue To Talhatech</SubTitle>
+        <SubTitle>To continue To Youtube</SubTitle>
         <Input
           placeholder="UserName"
           onChange={(e) => setName(e.target.value)}
