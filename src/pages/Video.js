@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
@@ -6,8 +7,34 @@ import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Comments from "../component/comment/Comments";
 import Card from '../component/card/Card'
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
-function Video() {
+const Video = () => {
+   const {currentUser} = useSelector((state)=> state.user)
+   const dispatch = useDispatch() 
+   const path = useLocation().pathname.split('/')[2]
+  //  console.log(path);
+  const [video, setVideo] = useState({})
+  const [channel, setChannel] = useState({})
+
+  useEffect(() => {
+
+  const fetchData = async () =>{
+    try {
+      const videoRes = await axios.get(`/videos/find/${path}`)
+      const channelRes = await axios.get(`/videos/find/${videoRes.userId}`)
+    setVideo(videoRes.data)
+    setChannel(channelRes.data)
+    
+    } catch (error) {
+      
+    }
+  }
+  fetchData()
+  }, [path])
+  
   return (
     <Container>
       <Content>
@@ -63,7 +90,7 @@ function Video() {
         <Comments />
       </Content>
       <Content>
-        <Recommendation>
+        {/* <Recommendation>
           <Card type='sm'/>
           <Card type='sm'/>
           <Card type='sm'/>
@@ -75,7 +102,7 @@ function Video() {
           <Card type='sm'/>
           <Card type='sm'/>
           <Card type='sm'/>
-        </Recommendation>
+        </Recommendation> */}
       </Content>
     </Container>
   );

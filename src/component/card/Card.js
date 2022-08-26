@@ -15,10 +15,13 @@ const Card = ({ type, video }) => {
       setChannel(res.data);
     };
 
-    fetchChannel();
+    fetchChannel(); 
   }, [video.userId]);
   return (
-    <Link to="/video/test" style={{ textDecoration: "none", color: "inherit" }}>
+    <Link
+      to={`/video/${video._id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <Container type={type}>
         <Image type={type} src={video.imgUrl} />
         <Details type={type}>
@@ -47,6 +50,9 @@ const Container = styled.div`
 const Image = styled.img`
   /* width:360px ; */
   width: 100%;
+  /* width:36px ; */
+  /* height:36px ; */
+  /* border-radius:50% ; */
   height: ${(props) => (props.type === "sm" ? "120px" : "202")};
   background-color: #999;
   flex: 1;
