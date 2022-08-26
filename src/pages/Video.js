@@ -10,13 +10,17 @@ import Card from '../component/card/Card'
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { fetchSuccess } from "../redux/videoSlice";
+import { format } from "timeago.js";
 
 const Video = () => {
    const {currentUser} = useSelector((state)=> state.user)
-   const dispatch = useDispatch() 
+   const {currentVideo} = useSelector((state)=> state.video)
+  const dispatch = useDispatch() 
+
    const path = useLocation().pathname.split('/')[2]
   //  console.log(path);
-  const [video, setVideo] = useState({})
+  // const [video, setVideo] = useState({})
   const [channel, setChannel] = useState({})
 
   useEffect(() => {
@@ -24,16 +28,16 @@ const Video = () => {
   const fetchData = async () =>{
     try {
       const videoRes = await axios.get(`/videos/find/${path}`)
-      const channelRes = await axios.get(`/videos/find/${videoRes.userId}`)
-    setVideo(videoRes.data)
+      const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`)
+    // setVideo(videoRes.data)
     setChannel(channelRes.data)
-    
+    dispatch(fetchSuccess(videoRes.data))
     } catch (error) {
       
     }
   }
   fetchData()
-  }, [path])
+  }, [path,dispatch])
   
   return (
     <Container>
@@ -49,13 +53,13 @@ const Video = () => {
             allowfullscreen
           ></iframe>
         </VideoWrapper>
-        <Title>Test Video</Title>
+        <Title>{currentVideo.title}</Title>
         <Details>
-          <Info>2,348,230 views - Aug 15 2022</Info>
+          <Info>{currentVideo.views}9898 views - {format(currentVideo.createdAt)}</Info>
           <Buttons>
             <Button>
               <ThumbUpAltOutlinedIcon />
-              123
+              {currentVideo.likes?.length}
             </Button>
             <Button>
               <ThumbDownAltOutlinedIcon />
@@ -73,14 +77,12 @@ const Video = () => {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <Image src="https://avatars.githubusercontent.com/u/94473513?v=4" />
+            <Image src={channel.img} />
             <ChannelDetail>
-              <ChannelName>TalhaTech</ChannelName>
-              <ChannelCounter>200k subscriber</ChannelCounter>
+              <ChannelName></ChannelName>
+              <ChannelCounter>{channel.subscribers}</ChannelCounter>
               <ChannelDescription>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s,
+               {currentVideo.desc}
               </ChannelDescription>
             </ChannelDetail>
           </ChannelInfo>
