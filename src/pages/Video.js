@@ -1,12 +1,13 @@
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownAltOutlinedIcon from "@mui/icons-material/ThumbDownAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import Comments from "../component/comment/Comments";
-import Card from '../component/card/Card'
+import Card from "../component/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -14,31 +15,30 @@ import { fetchSuccess } from "../redux/videoSlice";
 import { format } from "timeago.js";
 
 const Video = () => {
-   const {currentUser} = useSelector((state)=> state.user)
-   const {currentVideo} = useSelector((state)=> state.video)
-  const dispatch = useDispatch() 
+  const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
 
-   const path = useLocation().pathname.split('/')[2]
+  const path = useLocation().pathname.split("/")[2];
   //  console.log(path);
   // const [video, setVideo] = useState({})
-  const [channel, setChannel] = useState({})
+  const [channel, setChannel] = useState({});
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const videoRes = await axios.get(`/videos/find/${path}`);
+        const channelRes = await axios.get(
+          `/users/find/${videoRes.data.userId}`
+        );
+        // setVideo(videoRes.data)
+        setChannel(channelRes.data);
+        dispatch(fetchSuccess(videoRes.data));
+      } catch (error) {}
+    };
+    fetchData();
+  }, [path, dispatch]);
 
-  const fetchData = async () =>{
-    try {
-      const videoRes = await axios.get(`/videos/find/${path}`)
-      const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`)
-    // setVideo(videoRes.data)
-    setChannel(channelRes.data)
-    dispatch(fetchSuccess(videoRes.data))
-    } catch (error) {
-      
-    }
-  }
-  fetchData()
-  }, [path,dispatch])
-  
   return (
     <Container>
       <Content>
@@ -55,15 +55,25 @@ const Video = () => {
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
-          <Info>{currentVideo.views}9898 views - {format(currentVideo.createdAt)}</Info>
+          <Info>
+            {currentVideo.views}9898 views - {format(currentVideo.createdAt)}
+          </Info>
           <Buttons>
             <Button>
-              <ThumbUpAltOutlinedIcon />
+              {currentVideo.likes?.includes(currentUser._id) ? (
+                <ThumbUpIcon />
+              ) : (
+                <ThumbUpAltOutlinedIcon />
+              )}{" "}
               {currentVideo.likes?.length}
             </Button>
             <Button>
-              <ThumbDownAltOutlinedIcon />
-              Dislike
+              {currentVideo.dislikes?.includes(currentUser._id) ? (
+                <ThumbDownIcon />
+              ) : (
+                <ThumbDownAltOutlinedIcon />
+              )}{" "}
+              dislike
             </Button>
             <Button>
               <ReplyOutlinedIcon />
@@ -81,9 +91,7 @@ const Video = () => {
             <ChannelDetail>
               <ChannelName></ChannelName>
               <ChannelCounter>{channel.subscribers}</ChannelCounter>
-              <ChannelDescription>
-               {currentVideo.desc}
-              </ChannelDescription>
+              <ChannelDescription>{currentVideo.desc}</ChannelDescription>
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe>Subscribe</Subscribe>
@@ -108,7 +116,7 @@ const Video = () => {
       </Content>
     </Container>
   );
-}
+};
 
 const Container = styled.div`
   display: flex;
