@@ -11,8 +11,9 @@ import Card from "../component/card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { fetchSuccess } from "../redux/videoSlice";
+import { dislike, like, fetchSuccess } from "../redux/videoSlice";
 import { format } from "timeago.js";
+import { subscription } from "../redux/userSlice";
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -39,19 +40,28 @@ const Video = () => {
     fetchData();
   }, [path, dispatch]);
 
+  const handleLike = async () => {
+    await axios.put(`/users/like/${currentVideo._id}`);
+    dispatch(like(currentUser._id));
+  };
+  const handleDislike = async () => {
+    await axios.put(`/users/dislike/${currentVideo._id}`);
+    dispatch(dislike(currentUser._id));
+  };
+
+  const handleSub = async () => {
+    currentUser.subscribedUsers.includes(channel._id)
+      ? await axios.put(`/users/unsub/${channel._id}`)
+      : await axios.put(`/users/sub/${channel._id}`);
+    dispatch(subscription(channel._id));
+  };
   return (
     <Container>
       <Content>
         <VideoWrapper>
-          <iframe
-            width="575"
-            height="325"
-            src="https://www.youtube.com/embed/qZC_wjRkAt0"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <VideoFrame src={currentVideo.videoUrl} />
+
+          
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
@@ -59,7 +69,7 @@ const Video = () => {
             {currentVideo.views}9898 views - {format(currentVideo.createdAt)}
           </Info>
           <Buttons>
-            <Button>
+            <Button onClick={handleLike}>
               {currentVideo.likes?.includes(currentUser._id) ? (
                 <ThumbUpIcon />
               ) : (
@@ -67,7 +77,7 @@ const Video = () => {
               )}{" "}
               {currentVideo.likes?.length}
             </Button>
-            <Button>
+            <Button onClick={handleDislike}>
               {currentVideo.dislikes?.includes(currentUser._id) ? (
                 <ThumbDownIcon />
               ) : (
@@ -89,12 +99,16 @@ const Video = () => {
           <ChannelInfo>
             <Image src={channel.img} />
             <ChannelDetail>
-              <ChannelName></ChannelName>
+              <ChannelName>{channel.name}</ChannelName>
               <ChannelCounter>{channel.subscribers}</ChannelCounter>
               <ChannelDescription>{currentVideo.desc}</ChannelDescription>
             </ChannelDetail>
           </ChannelInfo>
-          <Subscribe>Subscribe</Subscribe>
+          <Subscribe onClick={handleSub}>
+          {currentUser.subscribedUsers?.includes(channel._id)
+              ? "unsSUBSCRIBED"
+              : "SUBSCRIBE"}
+          </Subscribe>
         </Channel>
         <Hr />
         <Comments />
@@ -210,5 +224,9 @@ const Subscribe = styled.button`
   cursor: pointer;
   padding: 10px 20px;
 `;
-
+const VideoFrame= styled.video`
+max-height:720px;
+width:100% ;
+object-fit:cover ;
+`
 export default Video;

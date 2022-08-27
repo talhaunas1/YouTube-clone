@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Comment from "./Comment";
 
 const Comments = () => {
+  
   return (
     <Container>
       <NewComment>
